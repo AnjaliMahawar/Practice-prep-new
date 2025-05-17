@@ -1,0 +1,124 @@
+we usen redux to store our application data globally means for ex we have a grand parent component which have some data 
+which we want to use in our grant child component so in taht senario piwe have to prop drilling without redux
+or 2. senario one component have some data which we want to use in another component but5 theri is no child parent relation 
+in that condition we can use redux to share data 
+
+redux needs too much boiler plate code and rtk overcome this problem
+
+redux is tool of state managment
+
+//we can create react app with npm create vite
+//  to use rtk we have to intall rtk and react-redux
+
+create slice =createSlice is a function provided by Redux Toolkit (RTK) that simplifies the process of 
+creating Redux reducers and action creators. 
+createslice includes the initial state, reducer functions, and action creators and name.
+
+A reducer is a function that takes the current state and an action as arguments and returns 
+the new state based on the action's type and payload. 
+reducer function take state and action
+
+In Redux Toolkit (RTK), an action is a plain JavaScript object that represents an intention to change 
+the state of the Redux store. Actions are dispatched to the Redux store using the dispatch function, 
+and they contain information about the type of change that should be applied to the store's state.
+
+
+reducer:{
+    adduser(state,action){
+      state.push(action.payload)
+    }
+    removeUser(state,action){
+
+    }
+}
+
+// Action creators are generated for each case reducer function
+export const { adduser, removeUser } = counterSlice.actions
+
+export default counterSlice.reducer
+
+//store 
+import { configureStore } from '@reduxjs/toolkit'
+import counterReducer from '../features/counter/counterSlice'
+
+export const store = configureStore({
+  reducer: {
+    counter: counterReducer,
+  },
+})
+
+//store
+  <Provider store={store}>
+    <App />
+  </Provider>,
+
+  if we wnat to update data with redux we have to use useDispatch hook 
+  The dispatch function is used to send actions to the Redux store, which in turn triggers
+   updates to the application's state.
+
+   dispatch(adduser())
+
+useSelector hook is a hook provided by the react-redux library. It's used to extract data from the 
+Redux store's state within a functional component
+ const count = useSelector((state: RootState) => state.counter.value)
+
+
+ import { createSlice } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
+
+export interface CounterState {
+  value: number
+}
+
+const initialState: CounterState = {
+  value: 0,
+}
+
+export const counterSlice = createSlice({
+  name: 'counter',
+  initialState,
+  reducers: {
+    increment: (state) => {
+      // Redux Toolkit allows us to write "mutating" logic in reducers. It
+      // doesn't actually mutate the state because it uses the Immer library,
+      // which detects changes to a "draft state" and produces a brand new
+      // immutable state based off those changes
+      state.value += 1
+    },
+    decrement: (state) => {
+      state.value -= 1
+    },
+    incrementByAmount: (state, action: PayloadAction<number>) => {
+      state.value += action.payload
+    },
+  },
+})
+
+// Action creators are generated for each case reducer function
+export const { increment, decrement, incrementByAmount } = counterSlice.actions
+
+export default counterSlice.reducer
+
+Redux Thunk is a middleware for Redux, a popular state management library in JavaScript and React 
+applications. Middleware in Redux is a way to add additional functionality to the dispatch process of
+ Redux actions. Redux Thunk is commonly used to handle asynchronous actions in Redux applications.
+ 
+ Middleware: Redux Thunk is implemented as middleware in the Redux store. Middleware sits between the
+  dispatch of an action and the moment it reaches the reducers. It intercepts actions and processes
+   them before they reach the reducers.
+
+Thunk Functions: A thunk function is a function that returns another function. In the context of Redux 
+Thunk, these functions take two arguments: dispatch and getState. The inner function can be asynchronous
+ and has access to the Redux store's dispatch method and the current state via getState.
+
+redux persist
+Persistent State: It allows you to persist parts of your Redux store in a storage mechanism 
+(such as Local Storage, AsyncStorage, etc.), which can survive page refreshes or even application 
+restarts. This is valuable for storing critical information like user authentication tokens, app 
+settings, or any data that should persist between sessions.
+
+ It's particularly useful for preserving and rehydrating the state of your Redux store, even across
+  page reloads or application restarts. This functionality ensures that certain parts of your
+   application's state persist beyond the current session.
+
+   

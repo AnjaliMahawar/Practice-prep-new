@@ -1,0 +1,20 @@
+chat app 
+we user  context api forstore our user data
+
+so till now i have worked on 4 project in my current company
+3 projects are completed on 4th is running 
+
+first project which i ahve done that was online resevation system where user can create account and can 
+become member and after then yser can login and mange their profile and can see availble slot and 
+ and user able to book their slot accoding this confort time and can choose floor and make payment 
+
+ 2. market place 
+
+ 2 nd was market place kind of project where admin can upload demo project and features of project and user or vistor 
+ can check project and f=availble features and buyer can contact to experts and can get their changes according 
+ thier requirement 
+
+ 3. was real time chstting application where i was use socket .io in that projeect i was worked on
+ group chat edit profile change password forgot password login signup  on that functinolity 
+
+ 4 

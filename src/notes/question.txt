@@ -1,0 +1,386 @@
+clouser
+
+clouser is inner function that have access to outer function variables
+every clouser have three scope
+outer scope // meanse when we create function inside function
+local  scope 
+global scope
+
+ outer function cant use inner  function variables
+nasted function are clouser
+example
+function parent(){
+    var j="anju"
+    console.log(j)
+    function innerFunction(){
+        var k="tannu"
+        console.log(k)
+        console.log(j)
+    }
+    innerFunction()
+}
+parent()
+
+hoisting
+
+Hoisting is JavaScript's default behavior of moving declarations to the top.
+In JavaScript, a variable can be declared after it has been used.
+
+ex
+console.log(a) //undefined
+var a 
+
+ex2
+console.log(a) //undefined
+var a =6 
+console.log(a) //6
+//declarations hoisted to the top  but intilaization is not 
+
+
+//its not behave same with const and let
+it will hoisted but will gon in dead jon 
+
+console.log(a) //can not access before intilaization
+const a 
+
+
+//infinite loop 
+for (var i = 0; i < Infinity; i++) {
+}
+
+while (true) {
+    // execute code forever
+}
+
+//jsx
+JSX stands for JavaScript XML.
+
+JSX allows us to write HTML in React.
+
+JSX makes it easier to write and add HTML in React.
+JSX converts HTML tags into react elements.
+You are not required to use JSX, but JSX makes it easier to write React applications.
+
+//callback
+A JavaScript callback is a function which is to be executed after another function has finished execution.
+
+//any function that is passed as an argument is called a callback function 
+
+
+//UseCallBack AND useMemo both increse the performace of react 
+
+//when we pass component or function that time we use use callback
+
+//# filter map and reduce are Higher order array methods
+map have three value 1.current value ,index,array (entire array)
+
+The map() function expects a callback as the argument and executes it once for each element in 
+the array. From the callback parameters, you can access the current element, the current index,
+ and the array itself.
+
+ map creates new array by performing operation on each array element and return that array
+
+ foreach not create new array 
+ foreach map filter are not modify original array 
+
+ Like map , the forEach() method receives a function as an argument and executes it once for each array
+  element. However, instead of returning a new array like map, it returns undefined.
+
+  The second difference between these array methods is the fact that map() is chainable. This means that you can attach reduce(), sort(), filter() and so on after performing a map() method on an array.
+That's something you can't do with forEach() because, as you might guess, it returns undefined.
+//filter....
+The filter() method creates a new array filled with elements that pass a test provided by a function.
+
+The filter() method does not execute the function for empty elements.
+
+The filter() method does not change the original array.
+
+//clouser 
+  A closure is a feature of JavaScript that allows inner functions to access the outer scope of a
+   function.
+a closure is the combination of a function bundled together with references to its surrounding state (the lexical enviroment)in other words a clouser gives you access to an outer function scope from an inner function 
+
+//lexical enviroment is a ability for function scope to access variable from parent scope
+
+conclusion when we have bundled function function inside function then inner function can access outer function 
+
+#promises ,async await , callback,trycatch
+#thunk middeware ,rudux flow
+
+//call bind apply this  debounce
+
+let var const 
+var can declare in same scope like var a, var a .
+let and const cant declare in same scope
+let and var we can declare without providing any value like let a, var b 
+but const we can't declare without providing any value 
+let and var can updated   but const can;t updated 
+ex let a=5 ;
+a=6 
+var b=12;
+b =14 
+
+but const cant updated
+
+varible with var is hoisted and let const also hoisted but they are go to tempror deadzon 
+
+temprordead zone
+. It's a specific phase during the execution of a JavaScript program where a variable exists in the scope but is in an uninitialized state, and trying to access it results in a ReferenceError.
+
+
+imp for hoisting 
+https://www.youtube.com/watch?v=oUWRxJ19gfE&list=PLKhlp2qtUcSaCVJEt4ogEFs6I41pNnMU5
+
+function declarations 
+function fun(){
+
+}
+
+function expression => when you store function inside variable then its called function expression 
+ex const newFun= function (){}
+fun. which havve no name can called annynumous function  annonymous fun can store in variable or can pass as callback
+
+//object 
+const user ={
+    name:'anjali',
+    age:'21',
+    "i like":true
+}
+const user ={
+    [pro]:name  //dynamic property
+}
+user['i like'] // as we can access
+user.name='anju'  //modify
+delete user.age  // can delete
+
+for(key in user){
+    console.log(key)// we can print all the key
+    console.log(user[key])// can print value
+}
+
+//deep shallow
+A shallow copy creates a new object or array, but it only copies the references of the original object's properties
+A deep copy, on the other hand, creates a completely independent copy of the original object or array, including all its nested objects or arrays. 
+
+//pure function 
+A pure function in JavaScript is a type of function with two essential characteristics:
+Deterministic: A pure function produces the same output for the same set of inputs every time it's
+ called. In other words, its behavior is predictable and does not depend on any external factors like 
+ global variables or system state.
+
+ No Side Effects: A pure function does not modify any data outside of its scope, and it does not have 
+ any observable side effects, such as modifying global variables, altering the state of external objects, or performing I/O operations. It only operates on its input parameters and returns a result.
+
+ function add(a, b) {
+  return a + b;
+}
+
+javascript synchronous or asynchronous
+JavaScript is both synchronous and asynchronous, depending on how you write and structure your code. 
+synchronous:By default, JavaScript executes code synchronously, meaning it executes one operation at a time in the order in which it appears in your script. 
+async:JavaScript also supports asynchronous programming, allowing you to perform tasks concurrently without blocking the main thread.
+
+promises 
+Promises in JavaScript are a way to handle asynchronous operations
+It has three states:
+
+Pending: Initial state, neither fulfilled nor rejected.
+
+Fulfilled (Resolved): The operation completed successfully, and the promise now has a resulting value.
+
+Rejected: The operation failed, and the promise has a reason for the failure.
+ex
+const myPromise = new Promise((resolve, reject) => {
+  // Asynchronous operation (e.g., fetching data)
+  // If successful, call resolve(result)
+  // If there's an error, call reject(error)
+});
+
+alternatives of promises 
+1.Callbacks:
+Callbacks are a traditional way of c  asynchronous operations in JavaScript.
+A callback is a function that you pass as an argument to another function. 
+When the asynchronous operation completes, the callback function is called
+
+
+2.Async/Await:
+Introduced in ECMAScript 2017 (ES8), async/await is a syntax for working with Promises in a more synchronous and readable way.
+async functions return Promises implicitly, and await is used inside async functions to pause execution until a Promise is resolved.
+
+call back hell 
+Callback hell, also known as "Pyramid of Doom," is a term used to describe a situation in JavaScript 
+where multiple nested callbacks create complex and hard-to-read code. It occurs when you have 
+asynchronous operations or functions that depend on the results of other asynchronous operations,
+ leading to deeply nested callback functions. This nesting can make your code difficult to understand,
+  maintain, and debug.
+
+  ex asyncFunction1(function (result1) {
+  // First asynchronous operation
+  asyncFunction2(result1, function (result2) {
+    // Second asynchronous operation
+    asyncFunction3(result2, function (result3) {
+      // Third asynchronous operation
+      // ...
+    });
+  });
+});
+ Rest vs spred opratoe ...
+ Difference between Spread and Rest Operator in JavaScript ...
+The Spread Operator is used to 'spread' an iterable into its elements, 
+const let spred=[1,2,3,4,5]
+console.log(..spread) //1 2 3 4 5
+//array item converted list item
+ while the Rest Operator 'collects' multiple elements into an array
+ function sum(a,b,...rest){
+    console.log(rest) //[3,4,5,6]
+ }
+ sum(1,2,3,4,5,6)
+
+//list item converted array item
+
+destructuring 
+Destructuring is a powerful feature in JavaScript that allows you to extract values from objects and 
+arrays, and assign them to variables in a concise and structured way.
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30,
+};
+// Destructuring object properties
+const { firstName, lastName, age } = person;
+const colors = ["red", "green", "blue"];
+
+// Destructuring with ignored elements
+const [firstColor, , thirdColor] = colors;
+
+local session cookie
+LocalStorage is a web storage API that allows you to store key-value pairs in a web browser with 
+no expiration time. The data stored in LocalStorage persists even after the browser is 
+closed and reopened, making it suitable for long-term storage of user preferences, settings, or 
+cached data.
+
+SessionStorage is similar to LocalStorage but with one crucial difference—it stores data for the 
+duration of a single session. A session typically starts when a user opens a browser window or tab and ends when they close it. Data stored in SessionStorage is only available during that session.
+// Store data in SessionStorage
+sessionStorage.setItem('token', 'abc123');
+// Retrieve data from SessionStorage
+const token = sessionStorage.getItem('token');
+
+Cookies are small pieces of data sent from a web server and stored in the user's browser. 
+Unlike LocalStorage and SessionStorage, cookies have an expiration date, and they can be set with 
+various attributes, such as domain and path, to control their scope and behavior.
+
+// Set a cookie with JavaScript
+document.cookie = "username=john_doe; expires=Thu, 31 Dec 2037 23:59:59 UTC; path=/";
+
+// Retrieve cookies with JavaScript
+const cookies = document.cookie;
+
+undefined null
+undefined is a primitive value in JavaScript that indicates that a variable has been declared but has not been assigned a value
+
+null  null is also a primitive value in JavaScript, but it represents an intentional absence of any object value or a placeholder for an expected object that has not yet been provided. It's often used to indicate that a variable or property should have no value or that it has been explicitly set to be empty.
+ 
+ tdz
+ Temporal Dead Zone (TDZ):
+The Temporal Dead Zone is the period between the declaration of a variable and its initialization, during which time the variable exists but cannot be accessed.
+If you try to access a variable declared with let or const within its TDZ, you'll get a ReferenceError.
+
+
+callback
+A callback function in JavaScript is a function that is passed as an argument to another function and 
+is executed after the completion of that function. Callbacks are a fundamental concept in JavaScript 
+and are widely used to handle asynchronous operations, event handling, and other scenarios where you
+ need to ensure that certain code runs after a specific task is completed.
+
+ // Callback Function
+function fetchData(callback) {
+  setTimeout(() => {
+    const data = "This is some data";
+    callback(data); // Callback function is called later
+  }, 1000);
+}
+
+// Normal Function
+function handleData(data) {
+  console.log("Data:", data);
+}
+
+// Callback function usage (passing handleData as a callback)
+fetchData(handleData);
+
+
+//Normal function 
+A normal function is a function that you define with a name and can call directly by invoking its name.
+
+function add(a, b) {
+  return a + b;
+}
+
+what is return type of counstrutor 
+In JavaScript, constructors don't have an explicit return type like functions do. When you create a constructor function, it's intended to be used with the new keyword to create instances of objects. The return value of a constructor function is typically an instance of the object that it defines.
+
+why const 
+const creates variables that are immutable, meaning their values cannot be reassigned after they are initially set. In React, immutability is a crucial concept, especially when dealing with component state and props. Immutable data helps ensure that components don't accidentally modify data they should not, reducing bugs and making it easier to reason about your code.
+const Optimizations by JavaScript Engines:
+const has block scope
+const has block-level scope, which means it is confined to the block (e.g., within an if statement or a loop) where it is defined. This helps prevent variable leakage and promotes better code organization.
+
+//annonymous fun 
+In JavaScript, anonymous functions are functions that do not have a name and are defined inline, typically at the point where they are used.
+Use Cases of Anonymous Functions in JavaScript:
+Callback Functions: Anonymous functions are commonly used as callback functions, 
+
+Array Methods: You can use anonymous functions with array methods like map, filter, and reduce to perform operations on array elements.
+const numbers = [1, 2, 3, 4, 5];
+const squared = numbers.map(function(x) {
+  return x * x;
+});
+
+//event
+In JavaScript, events are occurrences or happenings that take place in a web page as a result of user interactions or other triggers. These events can be detected and responded to using event listeners or handlers. Events allow you to create interactive and responsive web applications. Here are some common types of events in JavaScript:
+Window Events:,from Events:
+Mouse Events:
+Keyboard Events:
+
+e.preventDefault()
+Description. The preventDefault() method cancels the event if it is cancelable, meaning that the 
+default action that belongs to the event will not occur
+
+//Definition and Usage. The event. stopPropagation() method stops the bubbling of an event to parent elements, preventing any parent event handlers from being executed.
+
+//loops of js
+//curring
+
+Currying is a functional programming technique where a function with multiple arguments is transformed into a series of functions, each taking a single argument.
+
+Instead of taking all arguments at once, the curried function takes the first argument, returns a new function that takes the next argument, and so on until all arguments are provided. The final function then returns the result.
+
+In simpler terms, currying breaks down a function that takes multiple parameters into a chain of functions that each take one parameter.
+
+function simpleFunction(param1, param2, param3) {
+    return param1 + param2 + param3;
+}
+
+// Curried function
+function curriedFunction(param1) {
+    return function(param2) {
+        return function(param3) {
+            return param1 + param2 + param3;
+        };
+    };
+}
+
+ a curried function:
+
+The outer function takes the first argument and returns a new function.
+The returned function takes the next argument and returns another function.
+This process continues until the final function is called with the last argument and produces the result.
+Why is Currying useful in JavaScript?
+Currying offers several advantages, especially when working with functional programming patterns:
+
+It helps us to create a higher-order function
+It reduces the chances of error in our function by dividing it into multiple smaller functions that can handle one responsibility.
+It is very useful in building modular and reusable code
+It helps us to avoid passing the same variable multiple times
+It makes the code more readable

@@ -1,0 +1,59 @@
+css used to styling html document
+css 3 is currnt version
+component of css 1 property 2 selector 3 value
+
+type selector : type selector matheces of spacific type
+ex. input[type='text']{
+    color:"red"
+}
+
+universal type selector is used to match any element type
+
+*{
+    color :"white"
+}
+
+
+origin of css is SGML  
+Variation of css css1,css2,css2.1,css3,css4
+css box modlel contain 4 component 1.content ,2. padding ,3 border,4. margin 
+content :actual content of the box where the text amd image will placed 
+padding :area between content and border
+
+css framwork bootstrap ,mui
+
+css selector:css selector is indentifier of element on which you want to apply css ex.
+element selector
+id 
+class
+universal 
+group
+
+css opecity used to specify transprancy of an element
+VH /VW  view port hieght  and view port weight used to messur hieght and weight in percentage
+
+reset css :aim to remove all browser in built styling.
+mormalize css :aim to maintain in built styling on cross browser
+
+block element :the block element always starts from new line <div> <p>
+inline element :the do not starts from new line they appers from same line like <a> <span> <img>
+inline block element :inline block elements are similar  to inline expect they can have margin ,padding ,set height weight value
+
+units of css %,px,em 1em=16px
+background-color is used to specify background color of element
+
+property for controlling the image position background
+by default top-left of web page
+center,top ,bottom ,left ,right
+id is unique and class can be multiple
+
+if we want to target multiple element we can target by , h1,h2 {}
+media type allowed in css speech ,audio,visual,intractive media
+
+font realted css font-style ,variant,weight ,family
+
+responsive web design is flexible approache where uses flexibal imAGE layouts
+
+css preprocessor is used to enhance the basic functinolity like sass , less
+
+css position  margine and padding

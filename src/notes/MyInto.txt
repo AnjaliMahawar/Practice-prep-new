@@ -1,0 +1,38 @@
+thanks for giving me opportunity to introduce my self
+My name is Anjali Mahawar
+I am from Neemuch M.P.
+i have completed my graduation from Vikram university 
+currently i am pursuing McA from RGPV  . currently i am in 2 nd sem 
+i have 2 years of experience in React and next js  
+my strength is   i am self motivated 
+my hobbies are travelling and listing music 
+my short term goal is to get job in reputed company 
+and long term goal is achive good position in it company where i can build my carrer  and help the
+organization too 
+
+//debounce and throtling
+
+
+experience skill goal
+
+so as you know my name is Anjali from neemuch 
+i have 1.5 year of experience  in frondend with react js and next js
+
+in my previous company i have handled project like 
+1 edtech strudent learning platfrom
+2. real time chat
+3 marketplace website
+i am quite  good in searching solution of any problem like if i get any seberio in which i have not doesn
+earlier or where ever i stuk somewhere so i am good in rnd .
+ i am also good in work with AI 
+ I  also  been recognised for my work not only in my organization but i also got apprection frm client
+
+/////hoc and its usags lifecycle method
+https://www.youtube.com/watch?v=DMoUqfPybNw// stripe for pyment integation 
+customhook for navigation
+ how can snd data to sibling compo//with the help of context 
+ limitations  of react 
+ rules for react
+ reconcelation 
+
+ when diffing and reconclation process is going on that time we have 2 virtual dom when diffing is done again we have one virtual dom which is old one

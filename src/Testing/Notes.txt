@@ -1,0 +1,55 @@
+testing is the process of finding error in a software product before lunched .
+jsx:======It allows you to write HTML-like code directly within your JavaScript files. 
+//jest is a test runner
+testing lib https://testing-library.com/docs/
+//what should we avoid in testing
+Internal state of a component
+Internal methods of a component
+Lifecycle methods of a component
+Child components
+we only should test dom element which render on screen
+//we dont need to install any testing lib and anything for testiong coz we get it by when we install react app
+developer testing types 1. unit tessting , integrated testing ,E-2-e testing
+unit testing :testing individul units or component 
+integrated :testing between two uits or component
+E-2-E testing : to start to end complet project 
+
+tessting tools: jest and rect testing lib.
+in  same tessting file we can test multiple components
+
+we can run test file with the help of "npm test" cmd  ans "npm run test"
+
+npm run test <file name>  //if we want to run spacific file
+
+watch mode watch all update changes and also nshow new updates 
+
+//naming convention of testsing file 
+//name.test.js    //name.spec.js //name.spec.jsx  
+
+if we want to create multiple test file 
+we can create folder __test__  under this directory all file will consider test file
+
+snapshot testing
+Snapshot testing in Jest is a technique for capturing the output of a component or function and 
+storing it in a file. Subsequent runs of the test compare the current output with the saved "snapshot" 
+to ensure that it hasn't changed unexpectedly. This can be particularly useful for ensuring that UI
+ components remain consistent over time
+RTL query type 
+find single element 
+getBy ,queryBy,findBy
+
+find multiple element
+getAllBy queryAllBy findAllBy
+
+symentic tages =tages which able to descide their work and we can esily identify by dom like button
+non symentic=span , div,heading getByrole we mostly use for symentic tag
+
+expect(btn).toBeDisabled()
+expect(btn).toHaveValue()//default value
+
+//in package.json inside script we can use --verbose
+so that we can get description of test suitp
+ "test": "react-scripts test --verbose",
+
+PUT is used to update or replace an entire resource with a new representation.
+PATCH is used to apply partial modifications to a resource.

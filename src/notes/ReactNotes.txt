@@ -1,0 +1,622 @@
+##react is liabrary working on virtual dom
+React is a JavaScript-based UI development library. windly usedfor web development and Spa application
+v=v18
+control and uncontrol compont in react
+
+//javascript is a single threaded non blocking ayncronous concurrent language.
+
+Controlled and uncontrolled components in React refer to how the state of form elements 
+(like input fields, checkboxes, and radio buttons) is managed and handled within a React application.
+
+In a controlled component, the state of the form element is controlled by React. This means that the value of the 
+form element (e.g., the value of an input field) is derived from the component's state, and any changes to the form
+ element are handled by updating the component's state. /
+
+ To create a controlled component, you need to use the value prop to set the value of the form element and the 
+ onChange prop to handle any changes to the element. When the user interacts with the form element, React captures
+  the user input and updates the state accordingly, causing a re-render with the updated value.
+ex:---- <input type="text" value={inputValue} onChange={handleChange} />
+
+Uncontrolled Components:
+In an uncontrolled component, the form element maintains its state internally, without React managing it directly. 
+Instead of setting and getting the value through React's state, you can use a ref to access the form element's value.
+ex:---  <input type="text" ref={inputRef} />
+
+HOC
+A higher-order component (HOC) is a function that takes a component and returns a new component.component TAKES another
+compont as a props
+
+In React, a Higher-Order Component (HOC) is a pattern that allows you to reuse component logic. 
+Conditional Rendering:
+
+Scenario: You want to conditionally render a component based on certain conditions.
+Usage: Create an HOC that checks the conditions and conditionally renders the component.
+
+const withConditionalRendering = (WrappedComponent) => {
+  return class WithConditionalRendering extends React.Component {
+    render() {
+      return this.props.showComponent && <WrappedComponent {...this.props} />;
+    }
+  };
+};
+
+const ConditionalComponent = withConditionalRendering(MyComponent);
+
+event loop in js
+The event loop in JavaScript is a critical mechanism that allows JavaScript to handle asynchronous operations efficiently,
+
+JavaScript is a single-threaded language, which means it executes one operation at a time in a single sequence. This
+ could become problematic for tasks that take time to complete, such as fetching data from a server or reading a 
+ file, as they would block the execution of other code.
+
+ To avoid blocking, JavaScript uses the event loop, which consists of the following components:
+The process can be summarized as follows:
+
+Execute all synchronous code in the call stack until it is empty.
+Check the callback queue.
+If the callback queue is not empty, move the first callback to the call stack.
+Execute the callback from the call stack.
+Go back to step 1.
+
+Call Stack: The call stack is a data structure that keeps track of the functions that are currently being executed
+. When a function is called, it is added to the top of the call stack. 
+
+Callback Queue: When asynchronous operations (e.g., timers, network requests, and other events) are initiated, their corresponding
+ callback functions are registered to be executed once the operation is complete. These callback functions are placed
+  in the callback queue.
+
+  Event Loop: The event loop is a continuous process that runs in the background, checking the call stack and the callback queue.
+
+setTimeout
+Both setTimeout and setInterval are functions provided by JavaScript that are used to schedule the execution of code after a specified delay
+setTimeout is used to execute a function once after a specified delay (in milliseconds).
+It takes two arguments: the function to be executed and the delay in milliseconds.
+After the delay, the specified function is added to the callback queue, and it will be executed when the call stack is empty.
+If multiple setTimeout calls are made with the same delay, the functions will be added to the callback queue in the order they were called.
+
+setTimeout(() => {
+  console.log("This will be executed once after 2000 milliseconds.");
+}, 2000);
+
+setInterval:
+setInterval is used to execute a function repeatedly at a specified interval (in milliseconds) until it is cleared.
+It takes two arguments: the function to be executed and the interval in milliseconds.
+The specified function is added to the callback queue at every interval, and it will be executed when the call stack is empty.
+Unlike setTimeout, which executes the function only once, setInterval will keep scheduling the function at the specified interval until it is canceled using clearInterval.
+
+let counter = 0;
+const intervalId = setInterval(() => {
+  console.log(`This will be executed every 1000 milliseconds. Count: ${counter}`);
+  counter++;
+
+  if (counter === 5) {
+    clearInterval(intervalId); // Stop the interval after 5 iterations
+  }
+}, 1000);
+
+
+
+map and reduce and filter
+map , filter and reduce are two higher-order array functions 
+map=> map creates new array by performing some opreation on each element and returns that array
+#foreach not creates new aaray foeeach is loop
+ 
+ filter=filter creates new array with values that passes the a test  
+ ex a=[1,2,3,4,5] let a2=a.filter((val)=>{return val>2}) now a2=[3,4,5]
+
+ reduce=>The reduce function is used to accumulate values from an array and return a single value.
+ It takes a callback function and an optional initial value as arguments.
+const numbers = [1, 2, 3, 4, 5];
+const sum = numbers.reduce((accumulator, current) => accumulator + current, 0); console.log(sum); // Output: 15 (1 + 2 + 3 + 4 + 5)
+
+state => stae is js object used to contain data and informatipon about component whenever component state is change react rerander the page
+
+props are argument passed into react components
+## diff between state and props 
+Props are short for properties, and they are immutable data that are passed from
+ parent components to child components. They are used to provide information or configuration to child components.
+ state State represents the internal state of a component. It is used to manage and
+store data that can be changed over time within a component. Unlike props, state is mutable and can be updated using the setState() method provided by React.
+##lifecycle of react component
+ref=>ref give us direct access to dom element it is like getelement of id
+#we can pass data frm child to parent using callback
+
+#event loop 
+The event loop is a fundamental concept in JavaScript's concurrency model. It's responsible for managing the execution of code, 
+handling asynchronous operations, and ensuring that the program remains responsive even when dealing 
+with time-consuming tasks.
+
+Here's how the event loop works:
+
+Call Stack:
+The call stack is where the JavaScript engine keeps track of the currently executing function. 
+Whenever a function is called, a new frame is pushed onto the stack. When a function completes, its
+ frame is popped off the stack.
+
+Callback Queue (Task Queue):
+Once an asynchronous operation is complete, a callback function associated with that operation is 
+placed in the callback queue. This queue holds the functions that are ready to be executed once the
+ call stack is empty.
+
+ Event Loop:
+The event loop is a continuous process that monitors the call stack and the callback queue.
+ If the call stack is empty, the event loop takes the first function from the callback queue
+  and pushes it onto the call stack for execution. This allows the queued functions to be executed in 
+  the order they were added, ensuring that asynchronous tasks are completed and their callbacks are
+   executed.
+
+#prototype in javascript
+
+javascript object has special property called prototype that is either null or refrence of another object
+ we can set v prototype with the help of __proto__ 
+
+
+synthentic event in react js 
+In React, a synthetic event is a wrapper around the native browser event that provides a consistent and
+ cross-browser compatible interface for handling events in your components. 
+ Synthetic events have the same interface as native browser events, but they are optimized
+  for performance by pooling and reusing event objects.
+
+  The examples of the synthetic events are onClick(), onBlur() and onChange(). These all are not real 
+  DOM events but react synthetic events. Benefits of using synthetic events: Cross browsers applications are easy to implement.08-Jun-2023
+
+native event 
+Native events are the actual DOM events that occur in the browser.
+Examples of native events include click, change, keydown, etc.
+  handleNativeClick = (event) => {
+    // Access native event properties directly
+    console.log('Native event:', event.nativeEvent);
+  };
+
+  handleSyntheticClick = (event) => {
+    // Access synthetic event properties
+    console.log('Synthetic event:', event);
+  };
+
+jsx is not required in react but its allow to write html without jsx we can write with creatElement 
+
+react Strict mode 
+React Strict Mode is a development tool provided by React that helps you identify potential problems in
+ your application during development by enabling additional checks and warnings. It's not meant for 
+ production use; rather, it's designed to assist developers in finding and fixing issues early in the 
+ development process.
+ 1.Identifying Unsafe Lifecycle Methods:
+ 2.Warning About Deprecated Features:
+ 3.Detecting Unexpected Side Effects:
+  <React.StrictMode>
+      {/* Your application's component tree */}
+    </React.StrictMode>
+
+npx npm yarn 
+npm and yarn is package maneger 
+npx is package runner it allow you to run any package without having to install it
+yarn is fater and optimize then npm
+
+
+By providing reportWebVitals with a callback function (e.g., console.log), you'll see performance 
+metric information in the browser console. This information can help you identify areas where your
+ application might need optimization.
+ reportWebVitals(console.log); /
+
+ package.json is the main configuration file for your project. It contains metadata about your project,
+  such as its name, version, author, and most importantly, a list of dependencies and devDependencies.
+                              
+  package-lock.json (or yarn.lock if you're using Yarn) is an auto-generated file that records the 
+  exact version of each package and its dependencies used in your project.
+  It ensures that every member of your development team and every environment (e.g., local development, continuous integration, production) installs exactly the same versions of packages. This is essential for consistency and reproducibility.
+  The package-lock.json file is automatically generated or updated when you run npm install. It should be committed to your version control system (e.g., Git) so that others working on the project can use the same package versions.
+
+  Dependencies: vs devDependencies
+  Dependencies are packages on that your project relies on for its normal operation. These packages are necessary for your application to run correctly in production. When someone installs your project or runs it in a production environment, these dependencies are installed.
+  For example, in a React application, you have dependencies like react, react-dom, and other libraries that your app relies on for rendering components and handling various tasks. These are declared in the "dependencies" section of your package.json.
+
+  devDependencies, short for development dependencies, are packages that are only needed during the development and testing phase of your project. These packages are not required for your application to run in production. When someone is working on your project as a developer or running tests, these dependencies are installed.
+  To add a devDependency to your project, you can use the npm install --save-dev or yarn add --dev command. For example:
+
+//interceptor
+In the context of web development, an interceptor is a middleware-like mechanism that allows you to 
+intercept and possibly modify incoming or outgoing requests and responses in a web application.
+
+In the context of HTTP requests, interceptors are used to intercept and manipulate the requests before they are sent to the server or the responses before they reach the application.
+Common use cases for HTTP request interceptors include:
+Adding authentication tokens or headers to requests.
+Logging request information for debugging or analytics.
+Modifying request payloads or URLs.
+Handling errors and responses globally.
+
+HTTP Response Interceptors:
+
+Response interceptors operate on the incoming responses from the server. They allow you to inspect and potentially modify the response data before it is processed by the application.
+Common use cases for HTTP response interceptors include:
+Handling common error formats or status codes.
+Transforming response data into a standardized format.
+Implementing caching or response data manipulation.
+
+//pure component
+In React, a Pure Component is a class component that This means that a Pure Component will only re-render when its props or state change, 
+import React, { PureComponent } from 'react';
+class MyPureComponent extends PureComponent {
+  render() {
+    return <div>{this.props.text}</div>;
+  }
+}
+
+optimization in react
+Use the React.memo higher-order component to memoize functional components. This prevents unnecessary 
+re-renders of components when their props have not changed.
+2.Use code splitting to split your application into smaller chunks, which are loaded on-demand.
+3.Implement lazy loading for components that are not needed immediately when the app loads. Lazy loading ensures that components are only loaded when they are required, reducing the initial bundle size.
+4.Wrap your application with <React.StrictMode> during development to catch potential issues and warnings early in the development process.
+5.Minimize the number of network requests and use efficient data formats (e.g., JSON instead of XML). Implement server-side rendering (SSR) or server rendering for improved initial load performance.
+
+props //state
+Props are immutable and are passed from parent to child components, while state is mutable and is used for managing a component's internal data.
+State is typically initialized in a component's constructor, whereas props are provided by the parent component when rendering the child.
+When state changes, the component re-renders to reflect the new state. Changing props does not trigger a re-render of the component that received them; it's up to the component to react to prop changes, typically in the componentDidUpdate lifecycle method for class components or using hooks like useEffect in functional components.
+Props are used to make components reusable and configurable, while state is used for managing dynamic data within a component.
+
+//react router dom
+
+which hook is used for accessing html//useref
+function MyComponent() {
+  const myRef = useRef();
+
+  useEffect(() => {
+    // Access the DOM element
+    const buttonElement = myRef.current;
+
+    // You can interact with the element here, e.g., add event listeners
+    buttonElement.addEventListener('click', () => {
+      alert('Button clicked!');
+    });
+  }, []);
+
+  return (
+    <div>
+      <button ref={myRef}>Click me</button>
+    </div>
+  );
+}
+
+lazy loading: Lazy loading, in the context of web development, is a technique used to improve the performance and loading speed of web pages. It involves deferring the loading of non-essential resources (such as images, JavaScript, or other assets) until they are actually needed, rather than loading them all at once when the page initially loads. Lazy loading is particularly beneficial for large or content-heavy websites and applications. Here's how lazy loading works and its benefits:
+// LazyComponent.js
+import React from 'react';
+
+function LazyComponent() {
+  return <div>This is a lazy-loaded component.</div>;
+}
+
+export default LazyComponent;
+
+The primary use case for React Suspense is to handle asynchronous data fetching and code-splitting 
+(lazy loading) of components. It provides a way to handle loading states and errors gracefully within your components. Suspense is especially valuable in scenarios where you have components that depend on data from APIs, files, or other external sources.
+
+//react fragment
+React Fragments are a feature in React that allow you to group multiple React elements or components together without adding unnecessary wrapper elements to the DOM. 
+<React.fragment>
+
+//In React, you can ensure that your code works consistently across different web browsers by following best practices and using tools and techniques that help handle browser compatibility issues. Here are some steps you can take to ensure your React code works well in various browsers:
+
+Use Babel with Presets:
+
+Babel is a JavaScript compiler that allows you to write modern JavaScript code and then transpile it 
+into older versions of JavaScript that are compatible with a wider range of browsers. You can configure
+ Babel to use presets like @babel/preset-env and @babel/preset-react to transpile your JavaScript and
+  JSX code, respectively.
+
+  // .babelrc or babel.config.js
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
+}
+React Libraries and Components:
+
+When using third-party React libraries and components, verify their browser compatibility and ensure they are actively maintained.
+ESLint and Prettier:
+
+Use ESLint and Prettier to enforce coding standards and catch potential issues related to browser compatibility early in the development process.
+Regularly Update Dependencies:
+
+Keep your project dependencies, including React and its related libraries, up to date to benefit from bug fixes and improvements.
+
+//why functinol component
+Simplicity and Readability:
+No Need for this Keyword:Hooks API:;
+
+prop drillig
+"Prop drilling," also known as "prop passing" or "component drilling," is a term used in React to describe the process of passing props down the component tree through multiple intermediate components to reach a deeply nested component that needs access to those props. Prop drilling can occur when you have a hierarchy of components, and data needs to be passed from a high-level parent component to a lower-level child component.
+
+state ful and stateless 
+stateless
+Definition: Stateless functional components are JavaScript functions that take props as their argument
+ and return JSX elements. They are also known as "functional components" or "dumb components" because 
+ they do not have their own internal state.
+function Greeting(props) {
+  return <div>Hello, {props.name}!</div>;
+}
+stateful 
+. They can manage their own internal state
+Stateful: These components have the ability to manage their own state using the setState method, making them suitable for complex UIs with dynamic data.
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      Count: {count}
+      <button onClick={increment}>Increment</button>
+    </div>
+  );
+}
+
+export default Counter;
+
+
+
+protected route 
+A protected route in a React application is a route that requires the user to be authenticated or authorized in order to access it. In other words, it's a route that is protected from unauthorized access, typically by requiring the user to be logged in or meet certain access criteria.
+
+web pack and babel
+
+Microservices and Micro Frontends
+ are architectural approaches used in software development to break down large, monolithic applications
+  into smaller, more manageable parts. They focus on modularity, flexibility, and scalability by
+   dividing the application into independent, loosely coupled components or services. Here's an 
+   overview of each concept:
+
+   hooks
+   hoks allow function components to have access to state and other React feature
+
+   functions that let you “hook into” React state and lifecycle features from function components. 
+   Hooks were added to React in version 16.8. Hooks allow function components to have access to state and other React features.
+
+   useState
+   The React useState Hook allows us to track state in a function component.
+State generally refers to data or properties that need to be tracking in an application.
+
+The useEffect Hook allows you to perform side effects in your components.
+
+
+With Dependency Array: When you specify a dependency array, the effect will run if any of the values 
+in the array change between renders. This is useful for optimizing performance by avoiding unnecessary 
+re-execution of the effect.
+ex useEffect(() => {
+  // This code runs only when the 'count' or 'data' variables change
+  fetchData(count);
+}, [count, data]);
+
+
+useEffect(() => {}): In this case, you are using the useEffect hook without providing a dependency 
+array. This means the effect will run after every render of the component, including the initial render
+ and every subsequent re-render. It does not depend on any specific variables or props, so it will 
+ execute unconditionally.
+
+ useEffect(() => {}, []) runs only after the initial render and has no dependencies, making it suitable
+  for one-time setup or initialization.
+
+usecontext and context api 
+React Context is a way to manage state globally.
+It can be used together with the useState Hook to share state between deeply nested components more easily than with useState alone.
+1. To create context, you must Import createContext and initialize it:
+2.Wrap child components in the Context Provider and supply the state value.
+3.In order to use the Context in a child component, we need to access it using the useContext Hook.
+
+First, include the useContext in the import statement:
+import { useState, createContext, useContext } from "react";
+import ReactDOM from "react-dom/client";
+
+const UserContext = createContext();
+
+function Component1() {
+  const [user, setUser] = useState("Jesse Hall");
+
+  return (
+    <UserContext.Provider value={user}>
+      <h1>{`Hello ${user}!`}</h1>
+      <Component2 />
+    </UserContext.Provider>
+  );
+}
+
+function Component2() {
+  return (
+    <>
+      <h1>Component 2</h1>
+      <Component3 />
+    </>
+  );
+}
+
+function Component3() {
+  return (
+    <>
+      <h1>Component 3</h1>
+      <Component4 />
+    </>
+  );
+}
+function Component5() {
+  const user = useContext(UserContext);
+  return (
+    <>
+      <h1>Component 5</h1>
+      <h2>{`Hello ${user} again!`}</h2>
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Component1 />);
+
+useCallback
+Purpose: useCallback is primarily used to memoize functions to prevent unnecessary function re-creations
+, especially when those functions are passed as props to child components.
+Usage: You wrap a function and an array of dependencies (the same as in useEffect) in useCallback. The function will only be recreated if any of the dependencies change.
+Example: Useful when you have event handlers or callback functions that depend on props or state.
+
+useMemo allows you to memoize a value or the result of a function and recompute it only when its 
+dependencies chang9e. It is useful for optimizing expensive calculations or computations that should 
+not occur on every render.
+import React, { useState, useMemo, useCallback } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  // Memoize a function to calculate the square of 'count'
+  const calculateSquare = useMemo(() => {
+    console.log('Calculating square...');
+    return count * count;
+  }, [count]);
+
+  // Memoize an event handler for incrementing 'count'
+  const increment = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
+
+  return (
+    <div>
+      <h1>Counter</h1>
+      <p>Count: {count}</p>
+      <p>Square of Count: {calculateSquare}</p>
+      <button onClick={increment}>Increment</button>
+    </div>
+  );
+}
+is setState is async
+
+Yes, in React, the setState function returned by the useState hook is asynchronous. This means that when you call setState, React doesn't immediately update the component's state. Instead, it schedules a state update and performs it in a batched manner for performance optimization.
+
+React Fiber is an internal algorithm in the React library that was introduced to improve the performance and responsiveness of React applications. It is often referred to as "React Fiber Reconciliation" or simply "React Fiber." Fiber is not a separate library or API but rather a fundamental reimplementation of the core algorithm that drives React's rendering process.
+
+
+//cleanup in useEffect
+, it's necessary to perform cleanup when the component is unmounted or when certain dependencies
+ change. The cleanup is achieved by returning a function from the useEffect.
+
+  useEffect(() => {
+    // This function will be executed after the first render
+    console.log('Component mounted');
+
+    // Simulate data fetching (async operation)
+    const fetchData = async () => {
+      try {
+        // Assuming some asynchronous operation, like an API call
+        const result = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+        const jsonData = await result.json();
+
+        // Set the data in the component's state
+        setData(jsonData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+
+    // Cleanup function
+    return () => {
+      // This function will be executed when the component is unmounted
+      console.log('Component unmounted');
+    };
+  }, []); // Empty dependency array means the effect runs once after the first render
+
+web pack 
+Webpack in react is a JavaScript module bundler that is commonly used with React to bundle and manage 
+dependencies. It takes all of the individual JavaScript files and other assets in a project, 
+such as images and CSS, and combines them into a single bundle that can be loaded by the browser.
+virtual dom 
+Actual DOM: The actual DOM is the real, browser-specific representation of the HTML structure of a web page. It is a tree-like structure where each HTML element is a node.
+Virtual DOM: The Virtual DOM is an abstraction or lightweight copy of the actual DOM. It is a JavaScript representation of the DOM elements and their hierarchy.
+
+The Virtual DOM (Document Object Model) is a concept used in front-end web development to optimize the 
+performance of web applications. virtual dom is blue print of real dom 
+#Initial Render:
+When a React component is first rendered, React creates a Virtual DOM representation of the component's UI.
+This Virtual DOM is a lightweight, in-memory 
+ of the actual DOM structure.
+#Updates Triggered:
+When the state or props of a React component change, React triggers a re-render of that component.
+#New Virtual DOM Created:
+During a re-render, React creates a new Virtual DOM representation of the updated UI based on the new state or props.
+#Diffing (Reconciliation):
+React compares the new Virtual DOM with the previous Virtual DOM created during the last render.
+This process is often referred to as "diffing" or "reconciliation."
+#Identifying Changes:
+React's efficient diffing algorithm identifies the specific differences or changes between the new and old Virtual DOM trees.
+#Minimal Update Calculated:
+React determines the minimal set of changes required to bring the Real DOM (browser's DOM) in sync with the updated Virtual DOM.
+This minimizes the number of DOM manipulations needed.
+
+After the Virtual DOM has been used to calculate the minimal required updates,
+ the Real DOM is updated to reflect the changes.
+limitiation of react 
+   Learning Curve:
+For beginners, there can be a steep learning curve, especially when dealing with concepts like JSX, components, state, and props.
+Boilerplate Code:
+React applications may require more boilerplate code compared to simpler libraries. This can make the codebase seem verbose.
+SEO Challenges:
+React applications, by default, are often rendered on the client side, which can pose challenges for search engine optimization (SEO). While there are solutions (e.g., server-side rendering with Next.js), they add complexity.
+Global State Management:
+While React has mechanisms like Context API for state management, handling global state in large applications can be challenging without additional libraries like Redux.
+
+Promise.all is a utility function that takes an array of promises and returns a new promise that is 
+fulfilled with an array of resolved values when all the input promises are fulfilled, or rejected with
+ the reason of the first promise that is rejected.
+ Promise.all([promise1, promise2, promise3])
+  .then((results) => {
+    console.log("All data fetched:", results);
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+  });
+  key=n React.js, the key is a special attribute that you can include when creating lists of elements using the map 
+  function. The key is used by React to identify which items have changed, been added, or been removed in a list. It helps optimize the rendering process by allowing React to efficiently update the DOM when the list changes.
+if we have multiple async operation then callback can led callback hell so that we can use promises
+
+//life cycle
+ components have a lifecycle that consists of various phases during which they are created, updated, and eventually destroyed.
+ //functional component
+ 1.useEffect with an empty dependency array ([]) acts similarly to the componentDidMount lifecycle method.
+ 2.useEffect with a non-empty dependency array acts similarly to the componentDidUpdate lifecycle method.
+
+ //class component
+ 1.Mounting: componentDidMount is called after the component has been rendered to the DOM.
+ 2.componentDidUpdate is called after the component's update has been flushed to the DOM.
+ 3componentWillUnmount is called just before the component is unmounted and destroyed.
+
+rest op
+The rest operator is used to collect the remaining elements of an iterable (like an array) into a
+ single variable. It is often used in function parameters to handle variable numbers of arguments.
+ const [first, second, ...rest] = [1, 2, 3, 4, 5];
+console.log(first); // Output: 1
+console.log(second); // Output: 2
+console.log(rest); // Output: [3, 4, 5]
+
+spred
+ The spread operator in JavaScript is denoted by three dots (...) and it allows you to 
+expand elements from an array or object.
+When used with an array, the spread operator can be used to create a new array by combining the elements of multiple arrays. For example:
+```javascript
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const combinedArray = [...arr1, ...arr2];
+console.log(combinedArray); // [1, 2, 3, 4, 5, 6]
+```
+The spread operator can also be used to make a copy of an array or object. For example:
+```javascript
+const originalArray = [1, 2, 3];
+const copiedArray = [...originalArray];
+console.log(copiedArray); // [1, 2, 3]
+//diffrence between arrow function and normal function
+//pass by value and pass by refrence
+
+//cleanup in useEffect
+formate date in js
+const date = new Date(); // Current date
+const formattedDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;;//Formatted Date: 3/12/2024 1:30:00 PM
+
+there are 3 way to style react componet 1. inline style 2. with js object in same file 3 .externaly with css file

@@ -1,0 +1,21 @@
+1. **Mounting Phase**:
+   - **Class Components**:
+     - **constructor()**: Initializes state and binds event handlers.
+     - **render()**: Returns the JSX to be displayed.
+     - **componentDidMount()**: Invoked after the component is rendered in the DOM. Ideal for API calls or setting up subscriptions.
+   - **Functional Components**:
+     - **useEffect() with an empty dependency array**: Equivalent to `componentDidMount()` for functional components.
+2. **Updating Phase**:
+   - **Class Components**:
+     - **componentDidUpdate(prevProps, prevState)**: Called after a component is updated. Useful for performing state updates based on prop changes.
+   - **Functional Components**:
+     - **useEffect() with dependencies**: Triggers when the dependencies change, acting like `componentDidUpdate()`.
+3. **Unmounting Phase**:
+   - **Class Components**:
+     - **componentWillUnmount()**: Invoked just before a component is unmounted and destroyed. Good for cleanup tasks like removing event listeners.
+   - **Functional Components**:
+     - **useEffect() with a cleanup function**: Acts as `componentWillUnmount()` to clean up when the component is unmounted.
+These components and functions help manage the life cycle of React components effectively. Hope this breakdown helps you with your exam prep! :rocket:
+6:28
+useEffect(() => { return () => {} }, []): Clean up side effec
+useEffect(()=>{return ()=>{}},[])
