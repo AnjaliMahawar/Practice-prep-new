@@ -384,3 +384,133 @@ It reduces the chances of error in our function by dividing it into multiple sma
 It is very useful in building modular and reusable code
 It helps us to avoid passing the same variable multiple times
 It makes the code more readable
+
+Feature   	ES5	               ES6 (ES2015)
+Variables 	var	              let, const
+Functions	 function    	      Arrow functions
+Strings	   Concatenation	    Template literals
+Classes	   Function-based	     class syntax
+Modules	    None	             import/export
+Promises	  No	                Yes
+Destructuring	No	              Yes
+
+In React, render is used to display UI — it's the function that tells React what to show on the screen.
+
+Feature        	Fetch           	                    Axios
+Built-in?	✅    Yes (native to browsers)	❌            No (requires installing axios package)
+Syntax	          Verbose, uses Promises	            Cleaner and easier syntax
+Request/Response	Manual conversion (res.json())	    Auto-transform JSON
+Error Handling	  Only rejects on network failure	    Rejects on HTTP errors (e.g., 404, 500)
+Interceptors	    ❌ Not available                    	✅ Available (for request/response)
+
+In React, forms are used to handle user input — just like in HTML. But unlike plain HTML, React gives you full control over form behavior using state and event handling.
+ <form onSubmit={handleSubmit}>
+      <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Enter your name"
+      />
+      <button type="submit">Submit</button>
+    </form>
+
+Flux is an application architecture created by Facebook for building client-side web applications with unidirectional data flow. It’s often used with React, although it’s not exclusive to React.
+ Why Flux?
+In traditional MVC or two-way binding frameworks, complex applications can become hard to debug and maintain as data flows in multiple directions.
+Flux solves this by making the data flow one-way, making the app more predictable and easier to debug.
+View -> Action -> Dispatcher -> Store -> View
+Feature	Flux	Redux
+Dispatcher	✅ Yes (central dispatcher)	❌ No (uses reducers instead)
+Stores	Multiple	Single store
+Immutability	Optional	Required (state is immutable)
+Boilerplate	More	Less (but still significant)
+Community Usage	Less (older)	✅ More popular and widely adopted
+
+The Switch component was used in React Router v5 to render only the first matching <Route> from a list of routes.
+<Switch>
+  <Route path="/about" component={About} />
+  <Route path="/contact" component={Contact} />
+  <Route path="/" component={Home} />
+</Switch>
+If the URL is /contact, Switch checks each route in order.
+It matches /contact → renders Contact component.
+It stops there (even if more routes also match).
+V6 REACT ROUTER DOM
+<Routes>
+  <Route path="/about" element={<About />} />
+  <Route path="/" element={<Home />} />
+</Routes>
+ Link & NavLink Used for navigation without reloading the page.
+ const navigate = useNavigate();\\Programmatically navigate to a route.
+navigate('/home');
+6. useParams====Extract route parameters. const { id } = useParams(); // "id" from URL
+useLocation======Gives you info about the current URL.
+import { useLocation } from 'react-router-dom';
+const location = useLocation();
+console.log(location.pathname); // "/about"
+NASTED ROUTER//Use <Outlet /> in Dashboard to render child routes.
+<Routes>
+  <Route path="/dashboard" element={<Dashboard />}>
+    <Route path="profile" element={<Profile />} />
+    <Route path="settings" element={<Settings />} />
+  </Route>
+</Routes>
+
+const PrivateRoute = ({ children }) => {
+  const isLoggedIn = true; // or from auth context
+  return isLoggedIn ? children : <Navigate to="/login" />;
+};
+<Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+<Outlet /> is a placeholder in your layout or parent route component where nested child routes will be rendered.
+const DashboardLayout = () => {
+  return (
+    <div>
+      <h1>Dashboard Layout</h1>
+      <nav>
+        <Link to="home">Home</Link>
+        <Link to="profile">Profile</Link>
+      </nav>
+      
+      {/* Renders matched child route (Home or Profile) here */}
+      <Outlet />
+    </div>
+  );
+};
+ Conventional Routing (Traditional Routing)
+Happens on the server side.
+Every time you click a link or navigate, the browser sends a new HTTP request to the server.
+The server processes the request, sends back a full new HTML page.
+The browser unloads the current page and loads the new one.
+Examples: Traditional websites with PHP, Java, or Node.js server rendering pages per request.
+| Routing Type         | When to use                                      |
+| -------------------- | ------------------------------------------------ |
+| Conventional Routing | Simple websites, server-rendered apps, SEO focus |
+| React Routing (SPA)  | Interactive, dynamic web apps with rich UI       |
+
+useLayoutEffect is a React hook very similar to useEffect, but with one key difference:
+useLayoutEffect runs synchronously after all DOM mutations but before the browser has painted the screen.
+Whereas useEffect runs after the browser has painted.
+Use useLayoutEffect when you need to:
+
+Measure the DOM layout right after React changes it.
+Make DOM updates that must happen before the browser paints.
+Measuring element size or position (e.g., using getBoundingClientRect).
+Synchronizing animations.
+Changing scroll positions before the user sees anything.
+Applying styles or classes that affect layout immediately after DOM update.
+ useLayoutEffect(() => {
+    // Read the layout immediately after DOM update
+    const boxWidth = boxRef.current.getBoundingClientRect().width;
+    setWidth(boxWidth);
+  });
+You use the useRouter hook from 'next/router' to navigate between pages programmatically.
+import { useRouter } from 'next/router';
+const router = useRouter();
+  const { id } = router.query;  // id from URL
+  const goToAbout = () => {
+    router.push('/about'); // navigate to /about page
+  };
+
+
+
+
+

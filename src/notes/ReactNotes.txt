@@ -2,7 +2,12 @@
 React is a JavaScript-based UI development library. windly usedfor web development and Spa application
 v=v18
 control and uncontrol compont in react
-
+useMemo caches the result of a computation so it's not re-calculated on every render unless its dependencies change.
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+useCallback returns a memoized version of a callback function, so it doesn’t get recreated on every render unless dependencies change.
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b);
+}, [a, b]);
 //javascript is a single threaded non blocking ayncronous concurrent language.
 
 Controlled and uncontrolled components in React refer to how the state of form elements 

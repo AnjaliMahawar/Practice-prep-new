@@ -6,7 +6,6 @@ in that condition we can use redux to share data
 redux needs too much boiler plate code and rtk overcome this problem
 
 redux is tool of state managment
-
 //we can create react app with npm create vite
 //  to use rtk we have to intall rtk and react-redux
 
@@ -14,14 +13,13 @@ create slice =createSlice is a function provided by Redux Toolkit (RTK) that sim
 creating Redux reducers and action creators. 
 createslice includes the initial state, reducer functions, and action creators and name.
 
-A reducer is a function that takes the current state and an action as arguments and returns 
+A reducer is a function that takes the current state and an action as arguments and returns
 the new state based on the action's type and payload. 
 reducer function take state and action
 
 In Redux Toolkit (RTK), an action is a plain JavaScript object that represents an intention to change 
 the state of the Redux store. Actions are dispatched to the Redux store using the dispatch function, 
-and they contain information about the type of change that should be applied to the store's state.
-
+and they contain information about the type of change that should be applied to the store's state
 
 reducer:{
     adduser(state,action){

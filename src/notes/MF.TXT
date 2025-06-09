@@ -1,0 +1,97 @@
+ Webpack is not a React concept. It is a JavaScript module bundler, independent of any specific framework.
+Microfrontend is an architectural style where a frontend application is split into smaller, independent 
+"micro-apps" that are developed, deployed, and maintained separately — similar to microservices in the backend world.
+WAYS TO CREATE mf
+1. Module Federation (Webpack 5) – ✅ Most Popular
+Uses Webpack 5's built-in ModuleFederationPlugin.
+Enables dynamic runtime loading of remote modules/apps.
+Ideal for JavaScript-heavy SPAs.
+Recommended for large-scale apps using React/Angular/Vue.
+
+2. iframes
+Each micro-app runs in its own iframe.
+Total isolation.
+Easy to integrate legacy systems.
+Drawbacks: Poor user experience, performance overhead, communication is hard.
+
+3. JavaScript Includes / Custom Elements
+Embed scripts or Web Components (Custom Elements) in the host app.
+Clean integration.
+Useful for non-SPA or when only a small portion needs to be isolated.
+
+4. Server-Side Composition (Edge-Side Includes, SSR)
+Combine microfrontends on the server (e.g., using Node.js, Edge functions).
+Best for multi-page applications (MPAs) or SEO-heavy apps.
+Uses tools like Tailor, Podium, or custom logic.
+Term----	Meaning
+Host----	The main shell app that loads remote apps.
+Remote---	The micro-app that exposes modules to the host.
+Module Federation Plugin-----	A Webpack plugin to share code across apps at runtime.
+Exposes-----	Part of remote app you want to share (e.g., Button, Header)
+Remotes-------	References to other apps you want to load in host app.
+
+ exposes: "What am I giving to others?"
+ It tells Webpack what modules (components, utils, etc.) your app is exposing (sharing) with other apps.
+ remotes: "What am I consuming from others?"
+ It tells Webpack which external apps (remotes) you want to load and use at runtime, and where to find them.
+ shared: "What libraries should we not duplicate?"
+ It tells Webpack which dependencies (e.g., React, Lodash) should be shared and not duplicated across apps.
+Helps reduce bundle size and avoid React rendering issues due to version mismatches.
+App Structure
+container (Host app)
+marketing (Remote app)
+##REMOTE APP
+// marketing/webpack.config.js
+new ModuleFederationPlugin({
+  name: 'marketing',
+  filename: 'remoteEntry.js',
+  exposes: {
+    './MarketingApp': './src/bootstrap',
+  },
+  shared: ['react', 'react-dom'],
+});
+##Host app
+// container/webpack.config.js
+new ModuleFederationPlugin({
+  name: 'container',
+  remotes: {
+    marketing: 'marketing@http://localhost:8081/remoteEntry.js',
+  },
+  shared: ['react', 'react-dom'],
+});
+# Usage in Host App
+import MarketingApp from 'marketing/MarketingApp';
+
+function App() {
+  return (
+    <div>
+      <h1>Host App</h1>
+      <MarketingApp />
+    </div>
+  );
+}
+
+Does shared mean the dependency is not installed in other apps?
+No — each microfrontend still needs to install the dependencies locally via package.json.
+shared means: “Let’s avoid loading this dependency twice in the browser at runtime.”
+singleton: true	Makes sure only one instance of React exists across the whole microfrontend app
+requiredVersion: '^18.2.0'	Defines what version of React your app expects — ensures compatibility across remotes and host
+
+const { ModuleFederationPlugin } = require('webpack').container;
+const deps = require('./package.json').dependencies;
+
+module.exports = {
+  // entry, output, resolve, etc.
+  plugins: [
+    new ModuleFederationPlugin({
+      name: 'hostApp',
+      remotes: {
+        remoteApp: 'remoteApp@http://localhost:3001/remoteEntry.js',
+      },
+      shared: {
+        react: { singleton: true, requiredVersion: deps.react },
+        'react-dom': { singleton: true, requiredVersion: deps['react-dom'] },
+      },
+    }),
+  ],
+};

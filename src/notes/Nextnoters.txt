@@ -1,3 +1,15 @@
+
+Next.js is a React-based framework for building full-stack web applications with features like:
+Server-side rendering
+Static site generation
+API routes
+File-based routing
+Image optimization
+Middleware
+Incremental static regeneration (ISR)
+Built-in support for SEO
+
+
 key features of next
 Server-Side Rendering (SSR):   Next.js enables server-side rendering out of the box. This means that pages 
 can be pre-rendered on the server before being sent to the client. SSR improves initial page load performance 
@@ -93,7 +105,6 @@ next js supports file based routing
     default type of componet is sever component
      
      if we want to create client component we have to use "use client" on number one line other wise we get error
-
      # we cant use events in server components like onclick 
 
      why server component better for seo 
@@ -148,3 +159,104 @@ states of promis
  Pending: Initial state, neither fulfilled nor rejected.
 Fulfilled: The operation completed successfully.
 Rejected: The operation failed
+
+ISR — Incremental Static Regeneration
+ISR allows you to statically generate pages at build time and update them incrementally after deployment without rebuilding the entire site.
+How It Works:
+You define a revalidate period (in seconds) in your getStaticProps().
+
+After the first request, a background regeneration is triggered if the page is older than the revalidation time.
+export async function getStaticProps() {
+  const data = await fetchData();
+  return {
+    props: { data },
+    revalidate: 60, // Regenerate this page every 60 seconds
+  };
+}
+Use Cases:
+Blog posts
+Product listings
+Marketing pages with frequent updates
+Pages where data changes, but not per user
+
+🟢 Pros:
+Fast page loads (served from CDN)
+Always up-to-date (after a small delay)
+No rebuilds needed for content changes
+
+CSR — Client-Side Rendering
+CSR renders content entirely in the browser after the page loads, typically using useEffect or other hooks to fetch data.
+Goal	Choose
+Fast, SEO-friendly page	ISR
+Authenticated dashboard	CSR
+Blog that updates weekly	ISR
+Live analytics dashboard	csr
+
+The /pages directory is the traditional file-based routing system in Next.js (before version 13). It maps files to routes automatically.
+File-based routing
+Pre-rendering using:
+getStaticProps (SSG)
+
+getServerSideProps (SSR)
+
+getStaticPaths (for dynamic SSG routes)
+
+Client-side navigation with next/link and next/router
+
+API routes via pages/api/
+Limitations
+Difficult to manage layouts
+No support for server components
+Less control over rendering granularity
+Lacks streaming and nested routing
+
+The /app directory is a new, more powerful routing system based on React Server Components and layouts. It enables more advanced use cases.
+Built on React Server Components (RSC)
+Supports:
+Nested layouts
+Streaming (<Suspense>)
+Server & client components
+Loading & error UI
+Built-in support for metadata (SEO)
+/app
+  layout.tsx              → Defines root layout
+  page.tsx                → Home: '/'
+  about/page.tsx          → '/about'
+  blog/[slug]/page.tsx    → '/blog/my-post'
+  blog/[slug]/loading.tsx → Loading UI
+  blog/[slug]/error.tsx   → Error boundary
+
+  Server-first by default (better performance)
+Layouts that persist across routes
+Advanced routing: parallel routes, intercepting routes
+Built-in loading.tsx and error.tsx support
+Streaming: only send what’s needed
+What Is "Layout Support" in Next.js?
+A layout is a common UI wrapper shared across multiple pages of your application — for example:
+A navbar,A footer,A sidebar,Shared CSS styles,Authentication wrapper
+Instead of repeating that code on every page, a layout lets you define it once and reuse it across pages.
+/app
+  layout.tsx           ← Main layout (header/footer)
+/app/dashboard
+  layout.tsx           ← Dashboard-specific layout (sidebar)
+/app/dashboard/page.tsx ← Dashboard page content
+Each layout.tsx wraps only the routes below it. That means:
+
+You can have nested layouts (e.g., a sidebar only on the dashboard)
+
+Layouts persist across route changes without re-rendering
+
+Layouts can be server or client components
+In the old /pages directory (Pages Router), you used:
+
+Function	Purpose
+getStaticProps	Static Site Generation (SSG)
+getServerSideProps	Server-Side Rendering (SSR)
+getStaticPaths	Required for dynamic SSG routes with params
+But in the new /app directory (App Router), these are replaced with React Server Components and fetch() caching strategies.
+Old Pages Router	New App Router Replacement
+getStaticProps	fetch() with { cache: 'force-cache' }
+getServerSideProps	fetch() with { cache: 'no-store' }
+getStaticPaths	generateStaticParams() function
+
+
