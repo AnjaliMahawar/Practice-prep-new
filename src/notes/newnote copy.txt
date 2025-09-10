@@ -1,0 +1,351 @@
+Event bubbling is a concept in the DOM (Document Object Model) where an event starts from the deepest (target) element and bubbles up to its parent elements.
+
+<div id="parent">
+  <button id="child">Click Me</button>
+</div>
+document.getElementById('parent').addEventListener('click', () => {
+  console.log('Parent clicked!');
+});
+document.getElementById('child').addEventListener('click', () => {
+  console.log('Child clicked!');
+});
+👇 What Happens When You Click the Button:
+Output:
+Child clicked!
+Parent clicked!
+Good for event delegation: handling multiple children with one event listener.
+event.stopPropagation();
+event.stopPropagation() is used to stop an event from bubbling up the DOM tree.
+ Default Behavior (Without stopPropagation())
+When you click a child element, the event bubbles up — meaning both the child and parent handlers are triggered.
+document.getElementById('child').addEventListener('click', (event) => {
+  event.stopPropagation(); // Stops bubbling here
+  console.log('Child clicked');
+});
+output Child clicked
+
+Event Delegation is a technique where you attach a single event listener to a parent element, and then use that to handle events on its
+ child elements — even if those children are added later.
+Why Use Event Delegation?
+✅ Performance: Fewer event listeners, especially with many elements (e.g., 100 buttons).
+✅ Dynamic Elements: It works for elements added after the page loads.
+✅ Cleaner Code: Centralizes logic instead of attaching to every child.
+<ul id="menu">
+  <li>Home</li>
+  <li>About</li>
+  <li>Contact</li>
+</ul>
+Instead of adding click listeners to each <li>, delegate using the parent:
+document.getElementById("menu").addEventListener("click", function (event) {
+  if (event.target.tagName === "LI") {
+    console.log("You clicked:", event.target.textContent);
+  }
+});
+output You clicked: About
+
+debouncing – Delay execution until user stops triggering
+Throttling – Run at most once per interval
+function throttle(func, limit) {
+  let lastCall = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - lastCall >= limit) {
+      lastCall = now;
+      func.apply(this, args);
+    }
+  };
+}
+
+ const handleResize = throttle(() => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }, 500); // Runs only once every 500ms
+
+window.addEventListener("scroll", throttle(() => {
+  console.log("Scroll event fired");
+}, 1000));
+Even if you scroll continuously, it logs at most once every 1000ms
+
+A Promise is a placeholder for a future value — something that may:✅ Succeed (fulfilled) ❌ Fail (rejected) ⏳ Or is still pending
+promise.then((result) => { // then() – handle success
+  console.log(result);
+});
+promise// error
+  .then((result) => console.log(result))
+  .catch((error) => console.log(error));
+ finally() – always runs (success or error)
+ promise
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err))
+  .finally(() => console.log("Done!"));
+  //real exmpl
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const success = true;
+      success ? resolve("Data loaded") : reject("Failed to load");
+    }, 1000);
+  });
+};
+
+fetchData()
+  .then((data) => console.log("✅", data))
+  .catch((err) => console.log("❌", err))
+  .finally(() => console.log("✅ Always runs"));
+
+ Promise.resolve(value)
+Returns a resolved promise:
+Promise.resolve("Hi").then(console.log); // "Hi"
+
+Returns a rejected promise:
+Promise.reject("Oops").catch(console.log); // "Oops"
+
+Promise.all====Waits for all promises to resolve, or rejects if one fails.
+Promise.all([
+  Promise.resolve(1),
+  Promise.resolve(2),
+  Promise.resolve(3),
+]).then(console.log);
+
+4. Promise.race([...])
+Returns first resolved or rejected promise.
+Promise.race([
+  Promise.resolve("Fast"),
+  new Promise((res) => setTimeout(() => res("Slow"), 1000)),
+]).then(console.log); // "Fast"
+
+Promise.allSettled([...])
+Waits for all to finish, returns array with status (fulfilled/rejected).
+Promise.allSettled([
+  Promise.resolve("Done"),
+  Promise.reject("Error"),
+]).then(console.log);
+
+ Promise.any([...])
+Returns first fulfilled, ignores rejections. If all reject → throws error.
+Promise.any([
+  Promise.reject("Err 1"),
+  Promise.resolve("First success"),
+  Promise.reject("Err 2"),
+]).then(console.log); // "First success"
+
+A Generator Function is a special kind of function in JavaScript that can pause and resume 
+ execution It uses the function* syntax and the yield keyword to produce values one at a time — like a factory that builds values on demand.
+
+function* numberGen() {
+  let i = 1;
+  while (true) {
+    yield i++;
+  }
+}
+const gen = numberGen();
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+console.log(gen.next().value); // 3
+function* myGenerator() {
+  console.log("Started");
+  yield 1; // Pause here
+  console.log("Resumed");
+  yield 2; // Pause again
+  console.log("Done");
+}
+const gen = myGenerator(); // Just creates the generator (nothing runs yet)
+
+console.log(gen.next()); // { value: 1, done: false }
+// Console: Started
+
+console.log(gen.next()); // { value: 2, done: false }
+// Console: Resumed
+
+console.log(gen.next()); // { value: undefined, done: true }
+// Console: Done
+In JavaScript, you can abruptly stop a generator function using the return() or throw() methods provided by the Generator object. These methods allow you to exit or interrupt the generator manually.
+. Stop using .return()
+The .return(value) method immediately ends the generator and returns the value you provide.
+
+. Interrupt with .throw()
+The .throw(error) method throws an error inside the generator — like injecting an exception. You can catch it inside the generator with try/catch.
+
+A Proxy in JavaScript is an object that allows you to intercept and customize operations performed on another object, such as:
+Getting a property
+Setting a property
+Deleting a property
+Checking if a property exists
+Think of it as a middleman between your code and the actual object. syntx const proxy = new Proxy(target, handler);
+target: the original objectt
+handler: an object that defines traps (functions that intercept operations).
+aN stands for "Not-a-Number".
+It is a special value in JavaScript that represents the result of an operation that does not produce a valid number — even though the operation expects a number.
+ When Does NaN Occur?
+NaN shows up in operations where:
+You do a math operation on non-numeric values
+You parse invalid numbers
+You divide 0/0
+let result1 = "abc" / 2;         // NaN (invalid division)
+let result2 = parseInt("xyz");   // NaN (can't convert to number)
+let result3 = Math.sqrt(-1);     // NaN (no real square root)
+console.log(result1, result2, result3); // NaN NaN NaN
+ndefined	A variable has been declared but not assigned a value yet
+let a;
+console.log(a);         // undefined (not assigned)
+null	A variable has been explicitly assigned to represent no value
+et b = null;
+console.log(b);         // null (explicitly nothing)
+ A function that takes another function as an argument, or returns a function. map and filtter is HOF Because filter() and map() take callback functions as parameters.
+ EXPLA HOC 
+ function withLoader(Component) {
+  return function WithLoaderComponent({ isLoading, ...props }) {
+    if (isLoading) return <div>Loading...</div>;
+    return <Component {...props} />;
+  };
+}
+
+const Profile = ({ name }) => <div>Welcome, {name}</div>;
+const ProfileWithLoader = withLoader(Profile);
+
+// Usage
+<ProfileWithLoader isLoading={false} name="Anjali" />
+| Feature                | Redux                                          | React Context                                   |
+| ---------------------- | ---------------------------------------------- | ----------------------------------------------- |
+| **Purpose**            | State management library for complex apps      | Pass data deeply without prop drilling          |
+| **Boilerplate**        | More setup and code (actions, reducers, store) | Minimal setup, built-in with React              |
+| **Performance**        | Better for large, frequent updates (optimized) | Can cause unnecessary re-renders if not careful |
+| **DevTools**           | Excellent devtools, time-travel debugging      | Basic React devtools, no time travel            |
+| **Middleware support** | Supports middleware like redux-thunk, saga     | No middleware, just basic state passing         |
+| **Learning curve**     | Steeper, more concepts to learn                | Easier for small apps                           |
+| **Use case**           | Large-scale apps with complex state logic      | Small to medium apps or simple shared state     |
+| **Community**          | Huge ecosystem and community                   | Part of React, no external dependency           |
+
+When to Use Redux
+Complex state with many actions and reducers
+Need for middleware (async flows, logging)
+Large apps with many components relying on state
+You want powerful devtools and debugging features
+When to Use React Context
+Simple or medium apps
+Sharing state like theme, locale, auth info
+Avoid adding extra dependencies
+You want quick and easy state sharing
+
+HOW TO Connect componet with store in redux
+. Using React-Redux Hooks (Recommended for functional components)
+Since React-Redux v7.1+, you can use hooks for a cleaner approach.
+useSelector — to read state from the store.
+useDispatch — to dispatch actions.
+
+What is Middleware in Redux?
+Middleware is a piece of code that sits between the action dispatch and the reducer in Redux. It intercepts every action sent to the store and can:
+ Why Use Middleware?
+To handle asynchronous logic (e.g., API calls)
+To log actions for debugging
+To modify or cancel actions
+To integrate with other libraries (analytics, crash reporting)
+middleware
+redux-thunk — lets you write async logic that dispatches actions
+redux-saga — more advanced async side effect manager using generators
+logger — logs every action and state change
+
+Common Ways to Access Child State in Parent
+ Lifting State Up
+The most React-idiomatic way is to move the state from the child to the parent, then pass it down as props.
+function Parent() {
+  const [childData, setChildData] = React.useState('');
+
+  return (
+    <Child value={childData} onChange={setChildData} />
+  );
+}
+function Child({ value, onChange }) {
+  return (
+    <input
+      value={value}
+      onChange={e => onChange(e.target.value)}
+    />
+  );
+}
+ Using Refs with forwardRef and useImperativeHandle
+If you must keep state inside the child, you can expose some methods to the parent via refs.
+const Child = React.forwardRef((props, ref) => {
+  const [count, setCount] = React.useState(0);
+
+  React.useImperativeHandle(ref, () => ({
+    getCount: () => count,
+  }));
+
+  return <button onClick={() => setCount(c => c + 1)}>Count: {count}</button>;
+});
+
+function Parent() {
+  const childRef = React.useRef();
+
+  const showCount = () => {
+    alert(childRef.current.getCount());
+  };
+
+  return (
+    <>
+      <Child ref={childRef} />
+      <button onClick={showCount}>Show Child Count</button>
+    </>
+  );
+}
+Wrap functional components with React.memo() to memoize the component and prevent re-renders unless props change.
+ React Rendering – In Short
+Initial Render:
+React builds a virtual DOM from your JSX and mounts it to the real DOM.
+State/Props Change
+If you update state or receive new props, React re-renders the component.
+Re-render Process:
+React calls the component function again to get new JSX.
+It compares the new virtual DOM with the old one (diffing).
+Only the changed parts are updated in the real DOM.
+Commit Phase:
+React updates the actual DOM.
+Then runs useEffect or useLayoutEffect.
+
+ How Many Times Does a Component Re-render When You Set State Multiple Times in One Go?
+👉 Answer:
+If multiple setState calls happen synchronously in a single function (like an event handler), React batches them and re-renders only once.
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount(prev => prev + 1);
+    setCount(prev => prev + 1);
+    setCount(prev => prev + 1);
+  };
+
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={handleClick}>+3</button>
+    </div>
+  );
+}
+
+Even though setCount is called 3 times, React batches the updates.
+count updates once, final value becomes count + 3.
+Component re-renders only once after all 3 updates.
+
+In React, component names are created with capital letters by convention and for a specific technical reason related to how React
+ distinguishes between HTML elements and custom components.
+<MyCompo/>: React treats anything starting with a capital letter (MyComponent) as a custom React component.
+<myCompo/> : React treats it as a regular HTML element, like <div> or <span>, and tries to render it directly in the DOM.
+What is break in JavaScript?
+The break statement stops the execution of a loop (or switch case) immediately and jumps out of the loop.
+It is commonly used when you want to exit the loop based on a certain condition.
+ex Let’s say we want to search for the number 5 in an array, and once we find it, we stop iterating.
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+for (let i = 0; i < numbers.length; i++) {
+  console.log('Checking number:', numbers[i]);
+  if (numbers[i] === 5) {
+    console.log('Number 5 found! Stopping the loop.');
+    break;  // Stop looping once we find 5
+  }
+}
+
+
+
+
