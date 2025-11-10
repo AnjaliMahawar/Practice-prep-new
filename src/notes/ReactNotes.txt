@@ -130,7 +130,7 @@ ref=>ref give us direct access to dom element it is like getelement of id
 The event loop is a fundamental concept in JavaScript's concurrency model. It's responsible for managing the execution of code, 
 handling asynchronous operations, and ensuring that the program remains responsive even when dealing 
 with time-consuming tasks.
-
+;;;;;;;;;;;;;;;;;;
 Here's how the event loop works:
 
 Call Stack:

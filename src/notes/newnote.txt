@@ -346,6 +346,7 @@ for (let i = 0; i < numbers.length; i++) {
   }
 }
 
+Apollo Client is a JavaScript library that helps your frontend app interact with a GraphQL server easily.
+It’s like a bridge between your React app and your GraphQL API. you can cache api data with the help of apollo client
 
-
-
+Instead of having multiple REST endpoints, GraphQL lets you ask for exactly what you need, from a single endpoint.

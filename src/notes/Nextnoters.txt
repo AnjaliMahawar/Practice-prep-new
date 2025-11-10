@@ -13,7 +13,9 @@ Built-in support for SEO
 key features of next
 Server-Side Rendering (SSR):   Next.js enables server-side rendering out of the box. This means that pages 
 can be pre-rendered on the server before being sent to the client. SSR improves initial page load performance 
-and enables search engines to crawl and index the content effectively. It also provides a better experience for 
+and enables search engines to crawl and index the cgg
+y
+ntent effectively. It also provides a better experience for 
 users with slower internet connections.
 
 File-based Routing: Next.js introduces a file-based routing system. You can create a new file under the pages
@@ -108,7 +110,7 @@ next js supports file based routing
      # we cant use events in server components like onclick 
 
      why server component better for seo 
-     serch engine can easily read page content from server rendering
+     serch engine candsdx easily read page content from server rendering
 
      #there are two tehniques 
      for pre rendering 
