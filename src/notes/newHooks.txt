@@ -1,0 +1,33 @@
+useActionState helps you manage asynchronous actions (like submitting a form or calling an API) and track their pending state and 
+result, without manually juggling multiple pieces of state.useActionState helps you manage asynchronous actions (like submitting a 
+form or calling an API) and track their pending state and result, without manually juggling multiple pieces of state.
+const [state, action, isPending] = useActionState(actionFn, initialState);
+
+useOptimistic(): Lets you optimistically update the UI immediately while an async operation (like a server mutation) is still in progress — and then 
+revert or confirm when the operation finishes.
+const [optimisticState, addOptimisticUpdate] = useOptimistic(baseState, reducerFn);
+ const [optimisticComments, addComment] = useOptimistic(
+    comments,
+    (state, newComment) => [...state, newComment]
+  );
+
+  async function handleSubmit(formData) {
+    const newComment = { text: formData.get('comment') };
+    addComment(newComment); // Show immediately
+
+    await fetch('/api/comments', { method: 'POST', body: JSON.stringify(newComment) });
+  }
+useFormStatus():Gives you access to the submission state of a parent form, like whether it’s currently “pending”.
+This is great for disabling buttons or showing spinners during form submissions, without passing props down manually.
+const { pending, data, method, action } = useFormStatus();
+
+use() is a new API that lets you directly “read” a Promise, a Context, or a thenable in a component.
+React will automatically suspend rendering until the promise resolves, integrating seamlessly with Suspense and server components.
+import { use } from 'react';
+
+function Profile({ userPromise }) {
+  const user = use(userPromise); // Waits for promise to resolve
+  return <h1>{user.name}</h1>;
+}
+useTransition is a React Hook that lets you mark certain state updates as non-urgent (transitions) and set user action on prority—
+ meaning they can be deferred so that React keeps the UI responsive during heavy renders or data fetching.
