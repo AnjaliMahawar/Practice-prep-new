@@ -1,0 +1,217 @@
+typescript is objcet orieted programming language
+and js is scripting language
+
+ts has feature for static typing js has dynamic typing feature
+large codebases: TypeScript can significantly reduce bugs in large applications due to its static typing and compile-time checks.
+
+TypeScript (TS) is a superset of JavaScript that adds optional static typing to the language.
+Why Use TypeScript?
+Error Prevention: Static typing helps catch errors early during development, such as type mismatches and missing properties.
+Tooling: TypeScript enhances IDE features like autocompletion, intellisense, and refactoring support, making development more efficient.
+Scalability: TypeScript’s type system and features like interfaces help manage large and complex codebases.
+Better Documentation: The type annotations act as documentation for the code, making it easier for other developers to understand and maintain.
+
+DisAdvantage of ts
+its take more time to complie
+its does not support abstract classes
+to use third party lib defination file is require 
+ 
+ ts reliz in 2012 current stable version is 3.2 reliz in 2018
+
+ how to install 
+ npm install -g typescipt
+
+ compile ts file : tsc App.ts
+
+ Here's a short summary of the different types in TypeScript:
+
+1. Primitive Types
+string: Represents text data.
+Example: let name: string = "Alice";
+
+number: Represents numeric values.
+Example: let age: number = 25;
+
+boolean: Represents true or false.
+Example: let isActive: boolean = true;
+
+void: Represents the absence of a value (usually for functions).
+Example: function log(): void { console.log("Hello"); }
+
+null / undefined: Represents no value or uninitialized value.
+Example: let a: null = null;
+
+any: Can hold any type, disabling type checks.
+Example: let data: any = "hello";
+
+2. Object Types
+
+object: Represents non-primitive data types.
+Example: let person: object = { name: "John" };
+
+Arrays: A list of elements of a specific type.
+Example: let numbers: number[] = [1, 2, 3];
+
+Tuple: Array with fixed size and types.
+Example: let point: [number, number] = [10, 20];
+
+Function: Functions with defined parameter and return types.
+Example: let sum: (a: number, b: number) => number = (a, b) => a + b;
+
+3. Special Types
+undefined: Represents an uninitialized variable.
+Example: let uninitialized: undefined;
+never: Represents a value that never occurs (e.g., a function that throws an error).
+Example: function throwError(): never { throw new Error("Error"); }
+symbol: Represents unique identifiers.
+Example: let sym: symbol = Symbol();
+
+4. Complex Types
+Interfaces: Define object structures.
+Example:
+interface Person { name: string; age: number; }
+let person: Person = { name: "Alice", age: 25 };
+Type Aliases: Create custom types or unions.
+Example: type StringOrNumber = string | number;
+Union Types: Allow a variable to hold multiple types.
+Example: let value: string | number;
+Intersection Types: Combine multiple types into one.
+Example:
+interface A { a: string; }
+interface B { b: number; }
+type AB = A & B;
+5. Advanced Types
+Generics: Create reusable code with flexible types.
+Example:
+function identity<T>(value: T): T { return value; }
+Mapped Types: Create new types by modifying existing types.
+Example:
+type ReadOnly<T> = { readonly [K in keyof T]: T[K]; }
+Conditional Types: Create types based on conditions.
+Example:
+type IsString<T> = T extends string ? "Yes" : "No";
+6. Utility Types
+Partial<T>: Makes all properties optional.
+Example: type PartialPerson = Partial<Person>;
+Readonly<T>: Makes all properties read-only.
+Example: type ReadOnlyPerson = Readonly<Person>;
+Record<K, T>: Creates an object type with keys K and values T.
+Example: type Roles = Record<"admin" | "user", string>;
+Pick<T, K>: Selects specific properties from a type.
+Example: type NameOnly = Pick<Person, "name">;
+Omit<T, K>: Omits specific properties from a type.
+Example: type NameAndAge = Omit<Person, "address">;
+
+to compile in real time ts file : tsc --watch file1.ts
+
+An interface in TypeScript is a way to define the shape of an object, specifying its properties and their types. It helps enforce 
+structure and ensures that objects adhere to a specific format.
+interface Person {
+  name: string;
+  age: number;
+}
+const person: Person = { name: "Alice", age: 30 }; // Valid
+
+Classes in TypeScript allow you to create reusable blueprints for objects.
+Support constructors, access modifiers, inheritance, and static members.
+Help implement OOP principles like encapsulation and inheritance.Classes in TypeScript allow you to create reusable blueprints for objects.
+Support constructors, access modifiers, inheritance, and static members.
+Help implement OOP principles like encapsulation and inheritance.
+
+Access modifiers control the visibility and accessibility of class members (properties and methods).
+public:Default modifier.Members are accessible from anywhere (inside and outside the class).
+class Person {
+  public name: string;
+}
+private:Members are only accessible within the class.Cannot be accessed or modified outside the class.
+protected:Members are accessible within the class and its subclasses (derived classes).
+
+Modules in TypeScript help organize and structure your code into smaller, reusable, and maintainable pieces. A module in TypeScript is any file that contains a **import** or **export** statement.
+ex ::: export function add(x: number, y: number): number {
+       return x + y;
+       }
+export const PI = 3.14;
+//other file
+import { add, PI } from './math';
+console.log(add(2, 3));  // 5
+console.log(PI);         // 3.14
+
+| **Feature**        | **Internal Modules (Namespaces)**               | **External Modules (ES Modules)**                           |
+| ------------------ | ----------------------------------------------- | ----------------------------------------------------------- |
+| **Definition**     | Organizes code within the same file or project  | Organizes code across multiple files with `import`/`export` |
+| **Code Sharing**   | No explicit imports/exports (uses global scope) | Explicit `import` and `export` between files                |
+| **File Structure** | Single file or all in one scope                 | Multiple files, modular structure                           |
+| **Usage**          | Suitable for smaller projects or isolated code  | Used for large-scale projects with multiple files           |
+Namespaces
+Decorators are special functions used to modify or extend the behavior of classes, methods, properties, or parameters.
+
+A mixin is a pattern in TypeScript where multiple classes can be combined to share behavior. Mixins allow you to compose classes
+ from multiple sources, rather than using traditional inheritance.
+ // Mixin 1: CanFly behavior
+class CanFly {
+  fly() {
+    console.log("Flying...");
+  }
+}
+
+// Mixin 2: CanSwim behavior
+class CanSwim {
+  swim() {
+    console.log("Swimming...");
+  }
+}
+
+// Base class
+class Animal {}
+
+// Applying the mixins
+function mixin<T extends { new (...args: any[]): {} }>(Base: T) {
+  return class extends Base {
+    fly = CanFly.prototype.fly;
+    swim = CanSwim.prototype.swim;
+  };
+}
+
+// Creating a new class with mixed behaviors
+const FlyingSwimmingAnimal = mixin(Animal);
+
+// Using the mixed class
+const animal = new FlyingSwimmingAnimal();
+animal.fly();  // Output: Flying...
+animal.swim(); // Output: Swimming...
+
+Optional parameters in TypeScript are defined by using the ? symbol.
+They allow functions to be called with or without those parameters, providing flexibility in how you pass arguments.
+
+The tsconfig.json file is used to configure how TypeScript compiles your project.
+It includes settings for compiler options, file inclusion/exclusion, and more.
+It's essential for large projects and helps ensure consistent compilation behavior across different environments.
+
+Generics in TypeScript allow you to create reusable components (functions, classes, interfaces) that work with any data type, while still preserving type safety.
+Key Points:
+Type placeholders: You define a generic type using a placeholder (e.g., T).
+Flexible and reusable: You can create functions and classes that work with different types while keeping type safety.
+function identity<T>(arg: T): T {
+  return arg;
+}
+
+let result = identity(5);        // result is of type number
+let result2 = identity("hello"); // result2 is of type string
+Generics allow you to define flexible, reusable components that can work with any type while maintaining type safety.
+
+A source map file (.map) connects TypeScript code to its compiled JavaScript, making debugging easier.
+
+Type assertions in TypeScript allow you to tell the compiler to treat a value as a specific type. I
+Using as keyword: let length: number = (value as string).length;
+Using angle-bracket syntax (not recommended in JSX):: let length: number = (<string>value).length;
+
+An enum in TypeScript is a way to define a set of named constants. Enums can be used to represent a collection of related values like days of the week, status codes, or directions.
+enum Direction {
+  Up = 1,
+  Down,
+  Left,
+  Right
+}
+Method overriding allows a subclass to provide a specific implementation of a method from its superclass.
+It must have the same method signature.
+Use super to call the parent class method inside the overridden method if needed.

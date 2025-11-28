@@ -346,6 +346,8 @@ for (let i = 0; i < numbers.length; i++) {
   }
 }
 
-
+One-line summary
+Interface = for object structure + supports merging.
+ Type = more flexible (union, primitive, functions) but no merging.
 
 

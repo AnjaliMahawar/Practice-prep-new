@@ -9,7 +9,6 @@ Middleware
 Incremental static regeneration (ISR)
 Built-in support for SEO
 
-
 key features of next
 Server-Side Rendering (SSR):   Next.js enables server-side rendering out of the box. This means that pages 
 can be pre-rendered on the server before being sent to the client. SSR improves initial page load performance 
@@ -261,4 +260,15 @@ getStaticProps	fetch() with { cache: 'force-cache' }
 getServerSideProps	fetch() with { cache: 'no-store' }
 getStaticPaths	generateStaticParams() function
 
-
+Apollo Client helps your app send queries and mutations to a GraphQL server and store/cache the results efficiently.
+Think of it as:
+✔️ A tool to fetch data
+✔️ A tool to update data
+✔️ A tool to cache data so UI is super fast
+✔️ A replacement for API calls made using fetch/axios (but for GraphQL)
+how lazy loding works 
+Lazy loading means we don’t load the entire application bundle upfront. Instead, we load specific components only when they’re needed.
+In JavaScript, this is done using dynamic imports (import()), which allows the bundler to split the code into separate chunks.
+ When the user reaches that part of the UI, the browser fetches the chunk asynchronously.
+React.lazy uses this mechanism with Suspense to pause rendering until the chunk arrives.
+Next.js dynamic() builds on this by adding SSR control, loading fallbacks, and automatic chunk optimization.
