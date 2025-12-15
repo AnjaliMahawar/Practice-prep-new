@@ -215,3 +215,20 @@ enum Direction {
 Method overriding allows a subclass to provide a specific implementation of a method from its superclass.
 It must have the same method signature.
 Use super to call the parent class method inside the overridden method if needed.
+any →
+Like turning off TypeScript completely
+You can do anything with it—no compile-time checks.
+
+unknown → Type-safe version of any
+
+You cannot use it until you check its type (narrowing).
+let b: unknown = "hello";
+
+// ❌ Error
+b.toUpperCase(); // can't use directly
+
+// ✔ Must narrow first
+if (typeof b === "string") {
+  b.toUpperCase(); // works
+}
+

@@ -82,4 +82,5 @@ Commonly used for headers, footers, or sticky menus.
 5. sticky
 The element acts like relative until you scroll past a certain point.
 Then it sticks to a defined position (like fixed).
-Requires a top (or bottom) value and a scrolling container.
+Requires a top (or bottom) value and a scrolling container.1234
+
