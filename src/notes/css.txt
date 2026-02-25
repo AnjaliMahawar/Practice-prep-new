@@ -13,7 +13,6 @@ universal type selector is used to match any element type
     color :"white"
 }
 
-
 origin of css is SGML  
 Variation of css css1,css2,css2.1,css3,css4
 css box modlel contain 4 component 1.content ,2. padding ,3 border,4. margin 
@@ -49,7 +48,6 @@ id is unique and class can be multiple
 
 if we want to target multiple element we can target by , h1,h2 {}
 media type allowed in css speech ,audio,visual,intractive media
-
 font realted css font-style ,variant,weight ,family
 
 responsive web design is flexible approache where uses flexibal imAGE layouts

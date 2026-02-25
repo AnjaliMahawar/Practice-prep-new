@@ -71,8 +71,8 @@ function App() {
   );
 }
 
-Does shared mean the dependency is not installed in other apps?
-No — each microfrontend still needs to install the dependencies locally via package.json.
+microfrontendDoes shared mean the dependency is not installed in other apps?
+No — each  still needs to install the dependencies locally via package.json.
 shared means: “Let’s avoid loading this dependency twice in the browser at runtime.”
 singleton: true	Makes sure only one instance of React exists across the whole microfrontend app
 requiredVersion: '^18.2.0'	Defines what version of React your app expects — ensures compatibility across remotes and host

@@ -272,3 +272,43 @@ In JavaScript, this is done using dynamic imports (import()), which allows the b
  When the user reaches that part of the UI, the browser fetches the chunk asynchronously.
 React.lazy uses this mechanism with Suspense to pause rendering until the chunk arrives.
 Next.js dynamic() builds on this by adding SSR control, loading fallbacks, and automatic chunk optimization.
+
+Server-Side Rendering (SSR)
+Definition:
+Server-Side Rendering is a method where the page HTML is generated on the server for every incoming request.
+How it works:
+User request → Server fetches data → Server generates HTML → Browser receives ready page.
+Static Site Generation (SSG)
+Definition:
+Static Site Generation is a method where pages are pre-rendered at build time and served as static HTML files.
+How it works:
+Build time → Data fetched → Static HTML generated → Served via CDN.
+Incremental Static Regeneration (ISR)
+Definition:
+ISR allows static pages to be regenerated in the background after a specified time interval without rebuilding the entire application.
+4️⃣ Client-Side Rendering (CSR)
+Definition:
+Client-Side Rendering is when the browser loads minimal HTML and renders content using JavaScript after fetching data from APIs.
+How it works
+Browser loads JS → API call → Data fetched → Page rendered.
+6️⃣ Streaming
+Definition:
+Streaming allows parts of a page to be sent to the browser progressively instead of waiting for the entire page to be ready.
+Hybrid Rendering
+One of the most powerful features of Next.js is that it allows hybrid rendering.
+Different pages in the same application can use different rendering methods depending on business needs.
+Pages Router:
+
+Uses getServerSideProps and getStaticProps
+
+Traditional Next.js approach
+
+App Router (Next.js 13+):
+
+Uses React Server Components by default
+
+Supports Streaming
+
+Supports nested layouts
+
+More modern architecture

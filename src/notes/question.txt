@@ -1,5 +1,4 @@
 clouser
-
 clouser is inner function that have access to outer function variables
 every clouser have three scope
 outer scope // meanse when we create function inside function
@@ -36,13 +35,11 @@ var a =6
 console.log(a) //6
 //declarations hoisted to the top  but intilaization is not 
 
-
 //its not behave same with const and let
 it will hoisted but will gon in dead jon 
 
 console.log(a) //can not access before intilaization
 const a 
-
 
 //infinite loop 
 for (var i = 0; i < Infinity; i++) {
@@ -95,14 +92,6 @@ The filter() method does not execute the function for empty elements.
 
 The filter() method does not change the original array.
 
-//clouser 
-  A closure is a feature of JavaScript that allows inner functions to access the outer scope of a
-   function.
-a closure is the combination of a function bundled together with references to its surrounding state (the lexical enviroment)in other words a clouser gives you access to an outer function scope from an inner function 
-
-//lexical enviroment is a ability for function scope to access variable from parent scope
-
-conclusion when we have bundled function function inside function then inner function can access outer function 
 
 #promises ,async await , callback,trycatch
 #thunk middeware ,rudux flow
@@ -123,10 +112,8 @@ b =14
 but const cant updated
 
 varible with var is hoisted and let const also hoisted but they are go to tempror deadzon 
-
 temprordead zone
 . It's a specific phase during the execution of a JavaScript program where a variable exists in the scope but is in an uninitialized state, and trying to access it results in a ReferenceError.
-
 
 imp for hoisting 
 https://www.youtube.com/watch?v=oUWRxJ19gfE&list=PLKhlp2qtUcSaCVJEt4ogEFs6I41pNnMU5
@@ -412,18 +399,6 @@ In React, forms are used to handle user input — just like in HTML. But unlike 
       />
       <button type="submit">Submit</button>
     </form>
-
-Flux is an application architecture created by Facebook for building client-side web applications with unidirectional data flow. It’s often used with React, although it’s not exclusive to React.
- Why Flux?
-In traditional MVC or two-way binding frameworks, complex applications can become hard to debug and maintain as data flows in multiple directions.
-Flux solves this by making the data flow one-way, making the app more predictable and easier to debug.
-View -> Action -> Dispatcher -> Store -> View
-Feature	Flux	Redux
-Dispatcher	✅ Yes (central dispatcher)	❌ No (uses reducers instead)
-Stores	Multiple	Single store
-Immutability	Optional	Required (state is immutable)
-Boilerplate	More	Less (but still significant)
-Community Usage	Less (older)	✅ More popular and widely adopted
 
 The Switch component was used in React Router v5 to render only the first matching <Route> from a list of routes.
 <Switch>

@@ -81,7 +81,6 @@ interface A { a: string; }
 interface B { b: number; }
 type AB = A & B;
 5. Advanced Types
-Generics: Create reusable code with flexible types.
 Example:
 function identity<T>(value: T): T { return value; }
 Mapped Types: Create new types by modifying existing types.
@@ -232,3 +231,13 @@ if (typeof b === "string") {
   b.toUpperCase(); // works
 }
 
+Use interface for object structure
+👉 Use type for unions, primitives, and complex types
+interface → ✅ mergeable
+type → ❌ not mergeable
+
+Feature	                   interface	             type
+Purpose	                Define object shape   	Define any type
+Works wit primitives    	❌ No	               ✅ Yes
+Union / Intersection	   ❌ No	                 ✅ Yes
+TypeScript is compiled at compile time,

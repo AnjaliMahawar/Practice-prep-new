@@ -31,3 +31,5 @@ function Profile({ userPromise }) {
 }
 useTransition is a React Hook that lets you mark certain state updates as non-urgent (transitions) and set user action on prority—
  meaning they can be deferred so that React keeps the UI responsive during heavy renders or data fetching.
+
+ Shadow DOM provides style and DOM encapsulation at the browser level, while React uses Virtual DOM for efficient rendering and does not use Shadow DOM by default.
